@@ -65,4 +65,32 @@ Sistem informasi kasir
   ));
   ```
   syntax tersebut merupakan perintah untuk mengirimkan password pengguna yang nantinya akan divalidasi
+  ```php
+  $('#FormLogin').submit(function(e){
+	e.preventDefault();
+	$.ajax({
+		url: $(this).attr('action'),
+		type: "POST",
+		cache: false,
+		data: $(this).serialize(),
+		dataType:'json',
+		success: function(json){
+			//response dari json_encode di controller
 
+			if(json.status == 1){ window.location.href = json.url_home; }
+			if(json.status == 0){ $('#ResponseInput').html(json.pesan); }
+			if(json.status == 2){
+				$('#ResponseInput').html(json.pesan);
+				$('#InputPassword').val('');
+			}
+		}
+	});
+   });
+   ```
+   code diatas mengirimkan username dan password ke controller untuk divalidasi dan mendapatkan response dari json_encode yang nantinya akan ditentukan kemana website akan diredirect
+   ```php
+   $('#ResetData').click(function(){
+   $('#ResponseInput').html('');
+   });
+   ```
+   untuk meriset input yang dimasukkan sebelumnya
