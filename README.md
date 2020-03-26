@@ -2,7 +2,7 @@
 Sistem informasi kasir
 
 ## Membuat Database
-  https://github.com/sudrajadhadi/ETS-PBKK/blob/master/penjualan_db.sql
+* https://github.com/sudrajadhadi/ETS-PBKK/blob/master/penjualan_db.sql
   link tersebut merupakan pengisian database untuk sistem informasi pencatatan transaksi pada kasir
   ![database](https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/database.png)
 
@@ -43,3 +43,26 @@ Sistem informasi kasir
   3. password diisi sesuai dengan setting database pada komputer masing masing
   3. database_name diisi sesuai dengan nama database yang diintegrasikan 
   
+## Membuat Halaman Login
+* https://github.com/sudrajadhadi/ETS-PBKK/blob/master/application/views/secure/login_page.php merupakan halaman login pada sistem informasi kasir
+  ![login](https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/login.png)
+  ```php
+  <?php 
+  echo form_input(array(
+  'name' => 'username', 
+  'class' => 'form-control', 
+  'autocomplete' => 'off', 
+  'autofocus' => 'autofocus'
+  )); 
+  ?>
+  ```
+  sytax tersebut merupakan perintah untuk mengirimkan username pengguna yang nantinya akan divalidasi
+  ```php
+  echo form_password(array(
+  'name' => 'password', 
+  'class' => 'form-control', 
+  'id' => 'InputPassword'
+  ));
+  ```
+  syntax tersebut merupakan perintah untuk mengirimkan password pengguna yang nantinya akan divalidasi
+
