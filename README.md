@@ -96,8 +96,9 @@ Sistem informasi kasir
    untuk meriset input yang dimasukkan sebelumnya
 
 ## Membuat Halaman Transaksi
- * https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
-   merupakan gambar halaman utama untuk melakukan transaksi
+ * merupakan gambar halaman utama untuk melakukan transaksi
+https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
+ * mengambil tanggal dan waktu terkini untuk data tanggal transaksi
    ```php
    $('#tanggal').datetimepicker({
 	lang:'en',
@@ -105,7 +106,7 @@ Sistem informasi kasir
 	format:'Y-m-d H:i:s'
    });
    ```
- * mengambil tanggal dan waktu terkini untuk data tanggal transaksi
+ * fungsi tersebut untuk menampilkan data pelanggan yang ada di pojok kiri bawah halaman utama transaksi dan menambah baris baru untuk transaksi yang melebihi jumlah input yang disediakan
    ```php
    $(document).ready(function(){
 
@@ -144,7 +145,7 @@ Sistem informasi kasir
 	$("#TabelTransaksi tbody").find('input[type=text],textarea,select').filter(':visible:first').focus();
    });
    ```
-   fungsi tersebut untuk menampilkan data pelanggan yang ada di pojok kiri bawah halaman utama transaksi dan menambah baris baru untuk transaksi yang melebihi jumlah input yang disediakan
+ * fungsi tersebut digunakan untuk menampilkan field yang berguna untuk menambahkan kolom pada halaman transaksi setelah itu memanggil fungsi HitungTotalBayar()
    ```php
    function BarisBaru()
 {
@@ -177,7 +178,7 @@ Sistem informasi kasir
 	HitungTotalBayar();
 	}
 	```
-   fungsi tersebut digunakan untuk menampilkan field yang berguna untuk menambahkan kolom pada halaman transaksi setelah itu memanggil fungsi HitungTotalBayar()
+ * fungsi tersebut digunakan untuk menghapus input transaksi dan memanggil fungsi HitungTotalBayar()
    ```php
    $(document).on('click', '#HapusBaris', function(e){
 	e.preventDefault();
@@ -192,7 +193,7 @@ Sistem informasi kasir
 	HitungTotalBayar();
    });
    ```
-   fungsi tersebut digunakan untuk menghapus input transaksi dan memanggil fungsi HitungTotalBayar()
+ * fungsi yang digunakan untuk melakukan auto complete berdasarkan kode barang dan nama barang pada saat pengisian field transaksi dan memanggil fungsi HitungTotalBayar();
    ```php
    function AutoCompleteGue(Lebar, KataKunci, Indexnya)
 {
@@ -240,9 +241,9 @@ Sistem informasi kasir
 	});
 
 	HitungTotalBayar();
-   }
-   ```
-   fungsi yang digunakan untuk melakukan auto complete berdasarkan kode barang dan nama barang pada saat pengisian field transaksi dan memanggil fungsi HitungTotalBayar();
+    }
+    ```
+ * fungsi untuk menampilkan daftar barang yang disarankan untuk auto complete
    ```php
    $(document).on('click', '#daftar-autocomplete li', function(){
 	$(this).parent().parent().parent().find('input').val($(this).find('span#kodenya').html());
@@ -272,7 +273,7 @@ Sistem informasi kasir
 	HitungTotalBayar();
    });
    ```
-   fungsi untuk menampilkan daftar barang yang disarankan untuk auto complete
+ * digunakan untuk mengecek apakah stock tersedia atau tidak pada database
    ```php
    $(document).on('keyup', '#jumlah_beli', function(){
 	var Indexnya = $(this).parent().parent().index();
@@ -317,10 +318,10 @@ Sistem informasi kasir
 	});
    });
    ```
-   digunakan untuk mengecek apakah stock tersedia atau tidak pada database
+ * menghitung jumlah semua barang yang diinputkan
    ```php
    function HitungTotalBayar()
-{
+   {
 	var Total = 0;
 	$('#TabelTransaksi tbody tr').each(function(){
 		if($(this).find('td:nth-child(6) input').val() > 0)
@@ -337,10 +338,10 @@ Sistem informasi kasir
 	$('#UangKembali').val('');
    }
    ```
-   menghitung jumlah semua barang yang diinputkan
+ * menghitung jumlah uang kembalian
    ```php
    function HitungTotalKembalian()
-{
+   {
 	var Cash = $('#UangCash').val();
 	var TotalBayar = $('#TotalBayarHidden').val();
 
@@ -350,9 +351,10 @@ Sistem informasi kasir
 	} else {
 		$('#UangKembali').val('');
 	}
-   }
-   ```
-   menghitung jumlah uang kembalian
+    }
+    ```
+   
+ * fungsi untuk menconvert semua angka bisah menjadi betuk satuan mata uang indonesia
    ```php
    function to_rupiah(angka){
     var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
@@ -364,10 +366,10 @@ Sistem informasi kasir
         }
     }
     return 'Rp. ' + rev2.split('').reverse().join('');
-   }
-   ```
-   fungsi untuk menconvert semua angka bisah menjadi betuk satuan mata uang indonesia
-   ```php
+    }
+    ```
+  * memberikan shotcut untuk beberapa tombol sehingga memperbudah proses transaksi
+    ```php
    $(document).on('keydown', 'body', function(e){
 	var charCode = ( e.which ) ? e.which : event.keyCode;
 
@@ -404,12 +406,12 @@ Sistem informasi kasir
 
 		return false;
 	}
-   });
-   ```
-   memberikan shotcut untuk beberapa tombol sehingga memperbudah proses transaksi
+    });
+    ```
+ * fungsi untuk memberikan perintah controller untuk menyimpan transaksi pada database
    ```php
    function SimpanTransaksi()
-{
+   {
 	var FormData = "nomor_nota="+encodeURI($('#nomor_nota').val());
 	FormData += "&tanggal="+encodeURI($('#tanggal').val());
 	FormData += "&id_kasir="+$('#id_kasir').val();
@@ -444,7 +446,7 @@ Sistem informasi kasir
 	});
    }
    ```
-   fungsi untuk memberikan perintah controller untuk menyimpan transaksi pada database
+ * fungsi yang digunakan untuk cetak struk transaksi
    ```php
    function CetakStruk()
 {
@@ -485,4 +487,4 @@ Sistem informasi kasir
 	}
 }
    ```
-   fungsi yang digunakan untuk cetak struk transaksi
+   
