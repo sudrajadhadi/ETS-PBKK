@@ -196,7 +196,7 @@ https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
  * fungsi yang digunakan untuk melakukan auto complete berdasarkan kode barang dan nama barang pada saat pengisian field transaksi dan memanggil fungsi HitungTotalBayar();
    ```php
    function AutoCompleteGue(Lebar, KataKunci, Indexnya)
-{
+   {
 	$('div#hasil_pencarian').hide();
 	var Lebar = Lebar + 25;
 
@@ -449,7 +449,7 @@ https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
  * fungsi yang digunakan untuk cetak struk transaksi
    ```php
    function CetakStruk()
-{
+   {
 	if($('#TotalBayarHidden').val() > 0)
 	{
 		if($('#UangCash').val() !== '')
@@ -485,6 +485,6 @@ https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
 		$('#ModalGue').modal('show');
 
 	}
-}
+   }
    ```
    
