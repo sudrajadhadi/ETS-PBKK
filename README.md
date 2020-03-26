@@ -148,7 +148,7 @@ https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
  * fungsi tersebut digunakan untuk menampilkan field yang berguna untuk menambahkan kolom pada halaman transaksi setelah itu memanggil fungsi HitungTotalBayar()
    ```php
    function BarisBaru()
-{
+   {
 	var Nomor = $('#TabelTransaksi tbody tr').length + 1;
 	var Baris = "<tr>";
 		Baris += "<td>"+Nomor+"</td>";
