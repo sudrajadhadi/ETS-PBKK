@@ -45,8 +45,8 @@ $config['bootstrap']		= $config['plugin'].'bootstrap-3.3.6/';
 $config['font_awesome']		= $config['plugin'].'font-awesome/';
 
 //Setingan Judul & Footer Web
-$config['web_title']		= "Penjualan";
-$config['web_footer']		= $config['web_title']." &copy; 2016. Version 1.0. Programmed & Designed by <a href='http://sarjanakomedi.com' target='blank'>SarjanaKomedi</a>";
+$config['web_title']		= "Aplikasi Penjualan";
+$config['web_footer']		= $config['web_title']." &copy; 2020. Version 1.26.03 Edited by Sudrajad Hadi Saputra";
 
 /*
 |--------------------------------------------------------------------------

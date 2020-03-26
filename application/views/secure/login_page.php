@@ -53,18 +53,6 @@
 	</div>
 </div>
 
-<hr style='border-color:#999; border-style:dashed; '/>
-<div class='container'>
-<center>
-LIST AKSES<br /><br />
-<div class='row'>
-<div class='col-sm-3'><b>Admin</b> <br />Username : admin<br />Password : admin</div>
-<div class='col-sm-3'><b>Kasir</b> <br />Username : kasir<br />Password : kasir</div>
-<div class='col-sm-3'><b>Gudang</b> <br />Username : jaka<br />Password : jaka</div>
-<div class='col-sm-3'><b>Keuangan</b> <br />Username : joko<br />Password : joko</div>
-</div>
-</center>
-</div>
 
 <script>
 $(function(){
