@@ -97,7 +97,7 @@ Sistem informasi kasir
 
 ## Membuat Halaman Transaksi
  * merupakan gambar halaman utama untuk melakukan transaksi
-https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
+   ![transaksi](https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png)
  * mengambil tanggal dan waktu terkini untuk data tanggal transaksi
    ```php
    $('#tanggal').datetimepicker({
