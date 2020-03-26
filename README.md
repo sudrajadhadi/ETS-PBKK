@@ -370,7 +370,7 @@ https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/dashboard%20admin.png
     ```
   * memberikan shotcut untuk beberapa tombol sehingga memperbudah proses transaksi
     ```php
-   $(document).on('keydown', 'body', function(e){
+    $(document).on('keydown', 'body', function(e){
 	var charCode = ( e.which ) ? e.which : event.keyCode;
 
 	if(charCode == 118) //F7
