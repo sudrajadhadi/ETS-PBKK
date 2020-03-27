@@ -487,4 +487,98 @@ Sistem informasi kasir
 	}
    }
    ```
+## Membuat History Penjualan
+ * Tampilan History Penjualan
+   https://github.com/sudrajadhadi/ETS-PBKK/blob/master/foto/history%20transaksi.png
+ * fungsi untuk melakukan pencarian data pada halaman histroy penjualan
+   ```php
+   "oLanguage": {
+	"sSearch": "<i class='fa fa-search fa-fw'></i> Pencarian : ",
+	"sLengthMenu": "_MENU_ &nbsp;&nbsp;Data Per Halaman <?php echo $tambahan; ?>",
+	"sInfo": "Menampilkan _START_ s/d _END_ dari <b>_TOTAL_ data</b>",
+	"sInfoFiltered": "(difilter dari _MAX_ total data)", 
+	"sZeroRecords": "Pencarian tidak ditemukan", 
+	"sEmptyTable": "Data kosong", 
+	"sLoadingRecords": "Harap Tunggu...", 
+	"oPaginate": {
+		"sPrevious": "Prev",
+		"sNext": "Next"
+		}
+   },
+   ```
+ * fungsi untuk mengurutkan data history penjualan
+   ```php
+   "aaSorting": [[ 0, "desc" ]],
+	"columnDefs": [ 
+	{
+		"targets": 'no-sort',
+	 	"orderable": false,
+	}
+   ],
+   ```
+ * fungsi untuk menampilkan beberapa data dan memberikan error kesalahan apabila data tidak ditampilkan
+   ```php
+   "sPaginationType": "simple_numbers", 
+	"iDisplayLength": 10,
+	"aLengthMenu": [[10, 20, 50, 100, 150], [10, 20, 50, 100, 150]],
+	"ajax":{
+		url :"<?php echo site_url('penjualan/history-json'); ?>",
+		type: "post",
+		error: function(){ 
+			$(".my-grid-error").html("");
+			$("#my-grid").append('<tbody class="my-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+			$("#my-grid_processing").css("display","none");
+			}
+   ```
+ * fungsi meampilkan pop up notifikasi untuk menghapus data pada history transaksi
+   ```php
+   $(document).on('click', '#HapusTransaksi', function(e){
+	e.preventDefault();
+	var Link = $(this).attr('href');
+	var Check = "<br /><hr style='margin:10px 0px 8px 0px;' /><div class='checkbox'><label><input type='checkbox' name='reverse_stok' value='yes' id='reverse_stok'> Kembalikan stok barang</label></div>";
+	$('.modal-dialog').removeClass('modal-lg');
+	$('.modal-dialog').addClass('modal-sm');
+	$('#ModalHeader').html('Konfirmasi');
+	$('#ModalContent').html('Apakah anda yakin ingin menghapus transaksi <b>'+$(this).parent().parent().find('td:nth-child(3)').text()+'</b> ?' + Check);
+	$('#ModalFooter').html("<button type='button' class='btn btn-primary' id='YesDelete' data-url='"+Link+"' autofocus>Ya, saya yakin</button><button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>");
+	$('#ModalGue').modal('show');
+   });
+   ```
+ * fungsi untuk menghapus data transaksi ketika menekan tombol yes pada pop up notifikasi penghapusan data transaksi
+   ```php
+   $(document).on('click', '#YesDelete', function(e){
+	e.preventDefault();
+	$('#ModalGue').modal('hide');
+	var reverse_stok = 'no';
+	if($('#reverse_stok').prop('checked')){
+		var reverse_stok = 'yes';
+	}
+	$.ajax({
+		url: $(this).data('url'),
+		type: "POST",
+		cache: false,
+		data: "reverse_stok="+reverse_stok,
+		dataType:'json',
+		success: function(data){
+			$('#Notifikasi').html(data.pesan);
+			$("#Notifikasi").fadeIn('fast').show().delay(3000).fadeOut('fast');
+			$('#my-grid').DataTable().ajax.reload( null, false );
+		}
+	});
+   });
+   ```
+ * fungsi untuk melihat detail transaksi pada setiap data
+   ```php
+   $(document).on('click', '#LihatDetailTransaksi', function(e){
+	e.preventDefault();
+	var CaptionHeader = 'Transaksi Nomor Nota ' + $(this).text();
+	$('.modal-dialog').removeClass('modal-sm');
+	$('.modal-dialog').addClass('modal-lg');
+	$('#ModalHeader').html(CaptionHeader);
+	$('#ModalContent').load($(this).attr('href'));
+	$('#ModalFooter').html("<button type='button' class='btn btn-primary' data-dismiss='modal'>Tutup</button>");
+	$('#ModalGue').modal('show');
+   });
+   ```
    
+	
